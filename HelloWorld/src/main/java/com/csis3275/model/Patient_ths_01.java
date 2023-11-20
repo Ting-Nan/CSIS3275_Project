@@ -16,6 +16,7 @@ import jakarta.persistence.Table;
 public class Patient_ths_01 {
 	
 	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
@@ -24,6 +25,7 @@ public class Patient_ths_01 {
 	private String email;
 	private double height;
 	private double weight;
+	private String symptoms;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dob;
 	
@@ -31,10 +33,11 @@ public class Patient_ths_01 {
 		
 	}
 	
-	
-	
+
+
+
 	public Patient_ths_01(Long id, String firstName, String lastName, String email, double height, double weight,
-			LocalDate dob) {
+			String symptoms, LocalDate dob) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -42,10 +45,18 @@ public class Patient_ths_01 {
 		this.email = email;
 		this.height = height;
 		this.weight = weight;
+		this.symptoms = symptoms;
 		this.dob = dob;
 	}
 
 
+
+	public String getSymptoms() {
+		return symptoms;
+	}
+	public void setSymptoms(String symptoms) {
+		this.symptoms = symptoms;
+	}
 
 	public Long getId() {
 		return id;

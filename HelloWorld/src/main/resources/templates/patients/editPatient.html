@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Patient Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 50%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #selectedSymptoms {
+            font-weight: bold;
+            color: #4CAF50;
+            margin-top: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function updateSelectedSymptoms() {
+            var select = document.getElementById("symptoms");
+            var selectedSymptoms = [];
+
+            for (var i = 0; i < select.options.length; i++) {
+                if (select.options[i].selected) {
+                    selectedSymptoms.push(select.options[i].value);
+                }
+            }
+
+            document.getElementById("selectedSymptoms").innerText = selectedSymptoms.join(', ');
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Patient Form</h1>
+        <form action="#" th:action="@{/patients/edit}" th:object="${editPatient}" method="post">
+            <input type="hidden" th:field="${editPatient.id}" />
+            
+            <label for="id">Id:</label>
+            <input type="text" th:field="${editPatient.id}" th:value="${editPatient.id}" readonly="readonly">
+
+            <label for="firstName">First Name:</label>
+            <input type="text" th:field="${editPatient.firstName}" th:value="${editPatient.firstName}">
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" th:field="${editPatient.lastName}" th:value="${editPatient.lastName}">
+
+            <label for="email">Email:</label>
+            <input type="email" th:field="${editPatient.email}" th:value="${editPatient.email}">
+
+            <label for="height">Height:</label>
+            <input type="number" th:field="${editPatient.height}" th:value="${editPatient.height}">
+
+            <label for="weight">Weight:</label>
+            <input type="number" th:field="${editPatient.weight}" th:value="${editPatient.weight}">
+
+            <label for="symptoms">Symptoms:</label>
+            <select id="symptoms" th:field="${editPatient.symptoms}" multiple="multiple" onchange="updateSelectedSymptoms()">
+                <option value="Headache">Headache</option>
+                <option value="Cough">Cough</option>
+                <option value="Fever">Fever</option>
+                <option value="Fatigue">Fatigue</option>
+                <option value="Shortness of Breath">Shortness of Breath</option>
+            </select>
+
+            <p id="selectedSymptoms">Selected Symptoms: </p>
+
+            <input type="submit" value="Submit"/> 
+        </form>
+    </div>
+</body>
+</html>
