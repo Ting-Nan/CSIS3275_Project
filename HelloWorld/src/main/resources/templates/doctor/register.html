@@ -55,22 +55,22 @@
 		<h2>User Registration</h2>
 		<form action="#" th:action="@{/doctor/register}" th:object="${register}" method="post">
 			<label for="firstName">First Name:</label>
-            <input type="text" th:field="${registerDoctor.firstName}" id="firstName">
+            <input type="text" th:field="${register.firstName}" id="firstName">
 
             <label for="lastName">Last Name:</label>
-            <input type="text" th:field="${registerDoctor.lastName}" id="lastName">
+            <input type="text" th:field="${register.lastName}" id="lastName">
 
             <label for="email">Email:</label>
-            <input type="email" th:field="${registerDoctor.email}" id="email">
+            <input type="email" th:field="${register.email}" id="email">
 
             <label for="phoneNumber">Phone Number:</label>
-            <input type="number" th:field="${registerDoctor.phoneNumber}" id="phoneNumber">
+            <input type="number" th:field="${register.phoneNumber}" id="phoneNumber">
             
             <label for="dateOfBirth">Date Of Birth:</label>
-            <input type="date" th:field="${registerDoctor.dateOfBirth}" id="dateOfBirth">
+            <input type="text" th:field="${register.dateOfBirth}" id="dateOfBirth">
 
             <label for="password">Password:</label>
-            <input type="password" th:field="${registerDoctor.password}" id="password">
+            <input type="password" th:field="${register.password}" id="password">
             
             <label for="confirmPassword">Confirm Password:</label>
         	<input type="password" id="confirmPassword">
@@ -100,7 +100,22 @@
                 alert('Passwords do not match.');
                 return;
             }
+            
+            
         }
+        function parseAndFormatDate(dateString) {
+            const parts = dateString.split('/');
+            if (parts.length === 3) {
+                const month = parts[0];
+                const day = parts[1];
+                const year = parts[2];
+                const formattedDate = `${year}-${month}-${day}`;
+                return formattedDate;
+            }
+            return null;
+        }
+        
+        
     </script>
 </body>
 </html>

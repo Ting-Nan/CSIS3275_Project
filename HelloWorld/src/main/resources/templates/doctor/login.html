@@ -55,10 +55,10 @@
 		<h2>User Registration</h2>
 		<form action="#" th:action="@{/doctor/login}" th:object="${login}" method="post">
             <label for="email">Email:</label>
-            <input type="email" th:field="${loginDoctor.email}" id="email">
+            <input type="email" th:field="${login.email}" id="email">
 
             <label for="password">Password:</label>
-            <input type="password" th:field="${loginDoctor.password}" id="password">
+            <input type="password" th:field="${login.password}" id="password">
         	
         	<input type="submit" value="Submit"/> 
 		</form>
