@@ -17,12 +17,12 @@ public class Doctor_ths_01 {
 	private String firstName;
 	private String lastName;
 	private	Date dateOfBirth;
-	private int phoneNumber;
+	private String phoneNumber;
 	private String email;
 	private String password;
 	
 
-	public Doctor_ths_01(Long id, String firstName, String lastName, Date dateOfBirth, int phoneNumber, String email, String password) {
+	public Doctor_ths_01(Long id, String firstName, String lastName, Date dateOfBirth, String phoneNumber, String email, String password) {
 		this.id =  id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -60,10 +60,10 @@ public class Doctor_ths_01 {
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	public String getEmail() {
