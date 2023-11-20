@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.csis3275.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,4 +61,6 @@ public class PatientController_ths_01 {
 
 
 }
+=======
+>>>>>>> modelbranch_ths_01
 
