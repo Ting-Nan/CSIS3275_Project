@@ -1,6 +1,7 @@
 package com.csis3275.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,9 +26,10 @@ public class Patient_ths_01 {
 	private String email;
 	private double height;
 	private double weight;
-	private String symptoms;
+	//private String symptoms;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dob;
+	private List<String> symptoms;
 	
 	public Patient_ths_01() {
 		
@@ -37,7 +39,7 @@ public class Patient_ths_01 {
 
 
 	public Patient_ths_01(Long id, String firstName, String lastName, String email, double height, double weight,
-			String symptoms, LocalDate dob) {
+			List<String> symptoms, LocalDate dob) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -51,10 +53,10 @@ public class Patient_ths_01 {
 
 
 
-	public String getSymptoms() {
+	public List<String> getSymptoms() {
 		return symptoms;
 	}
-	public void setSymptoms(String symptoms) {
+	public void setSymptoms(List<String> symptoms) {
 		this.symptoms = symptoms;
 	}
 

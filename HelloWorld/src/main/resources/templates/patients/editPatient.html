@@ -115,13 +115,13 @@
             <input type="number" th:field="${editPatient.weight}" th:value="${editPatient.weight}">
 
             <label for="symptoms">Symptoms:</label>
-            <select id="symptoms" th:field="${editPatient.symptoms}" multiple="multiple" onchange="updateSelectedSymptoms()">
-                <option value="Headache">Headache</option>
-                <option value="Cough">Cough</option>
-                <option value="Fever">Fever</option>
-                <option value="Fatigue">Fatigue</option>
-                <option value="Shortness of Breath">Shortness of Breath</option>
-            </select>
+<select id="symptoms" th:field="${editPatient.symptoms}" multiple="multiple" onchange="updateSelectedSymptoms()">
+    <option th:each="symptom : ${allSymptoms}" 
+            th:value="${symptom}" 
+            th:text="${symptom}" 
+            th:selected="${editPatient.symptoms != null and editPatient.symptoms.contains(symptom)}">
+    </option>
+</select>
 
             <p id="selectedSymptoms">Selected Symptoms: </p>
 

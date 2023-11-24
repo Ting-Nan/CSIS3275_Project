@@ -1,4 +1,4 @@
-controllerBranch_ths_01
+//controllerBranch_ths_01
 package com.csis3275.controller;
 
 import com.csis3275.model.Doctor_ths_01;
@@ -62,6 +62,7 @@ public class DoctorController_ths_01 {
 			return "redirect:/doctor/login";
 		}
 	}
+	
 	
 	
 
