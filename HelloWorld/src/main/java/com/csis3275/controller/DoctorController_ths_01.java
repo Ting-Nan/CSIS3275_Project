@@ -63,7 +63,32 @@ public class DoctorController_ths_01 {
 		}
 	}
 	
+	@GetMapping("/doctor/deleteAccount")
+	public String showDeleteAccountPage(Model model) {
+	    // 获取当前登录医生的邮箱地址
+	    String email = getCurrentLoggedInDoctorEmail();
+
+	    // 将邮箱地址添加到模型中
+	    model.addAttribute("email", email);
+
+	    return "doctor/deleteAccount";
+	}
+
+	private String getCurrentLoggedInDoctorEmail() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@PostMapping("/doctor/deleteAccount")
+	public String deleteAccountConfirmation(@RequestParam String email, Model model) {
+	    // 调用服务类方法删除帐号
+	    doctorService_ths_01.deleteDoctorByEmail(email);
+
+	    // 删除成功后重定向到登录页面或其他页面
+	    return "redirect:/doctor/login";
+	}
 	
+
 	
 
 }

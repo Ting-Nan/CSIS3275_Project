@@ -1,5 +1,6 @@
 package com.csis3275.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.csis3275.model.PatientService_ths_01;
@@ -71,5 +73,25 @@ public class PatientController_ths_01 {
         patientService.updatePatient(editedPatient);
         return "redirect:/patients/list";
     }
+    
+    
+    
+    @RequestMapping("/patients/list/search")
+    public String patientList(Model model, @RequestParam(name = "keyword", required = false) String keyword) {
+        List<Patient_ths_01> patientList;
+
+        if (keyword != null && !keyword.isEmpty()) {
+            patientList = patientService.searchPatients(keyword);
+        } else {
+            patientList = patientService.findAll(); 
+        }
+
+        model.addAttribute("patientList", patientList);
+        model.addAttribute("keyword", keyword);
+
+        return "patients/list";
+    }
+    
+
 }
 

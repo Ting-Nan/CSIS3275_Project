@@ -5,7 +5,9 @@ package com.csis3275.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PatientService_ths_01 {
@@ -36,6 +38,25 @@ public class PatientService_ths_01 {
 	
 	public void deletePatient(Long idToDelete) {
 		patientRepository.deleteById(idToDelete);
+	}
+	
+	
+	
+	
+	public PatientService_ths_01(PatientRepository_ths_01 patientRepository) {
+        this.patientRepository = patientRepository;
+    }
+
+	
+	
+	
+    
+	public List<Patient_ths_01> searchPatients(String keyword) {
+        return patientRepository.search(keyword);
+    }
+
+	public List<Patient_ths_01> findAll() {
+	    return patientRepository.findAll();
 	}
 }
 

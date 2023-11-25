@@ -30,16 +30,10 @@ public class Patient_ths_01 {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dob;
 	private List<String> symptoms;
+	private String keyword;
 	
-	public Patient_ths_01() {
-		
-	}
-	
-
-
-
 	public Patient_ths_01(Long id, String firstName, String lastName, String email, double height, double weight,
-			List<String> symptoms, LocalDate dob) {
+			LocalDate dob, List<String> symptoms, String keyword) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -47,11 +41,30 @@ public class Patient_ths_01 {
 		this.email = email;
 		this.height = height;
 		this.weight = weight;
-		this.symptoms = symptoms;
 		this.dob = dob;
+		this.symptoms = symptoms;
+		this.keyword = keyword;
 	}
 
 
+
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+
+
+
+	public Patient_ths_01() {
+		
+	}
+	
 
 	public List<String> getSymptoms() {
 		return symptoms;

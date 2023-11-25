@@ -51,10 +51,10 @@
     <div class="container">
         <h2>Confirm Deletion</h2>
         <p>Are you sure you want to delete your account?</p>
-    <form method="post" action="/doctor/delete/{email}">
-    <input type="hidden" name="email" th:value="${email}" />
-    <button type="button" class="btn btn-danger" onclick="confirmDeletion()">Yes, Delete Account</button>
-</form>
+       <form method="post" th:action="@{/doctor/deleteAccount}">
+    	<input type="hidden" name="email" th:value="${email}" />
+    	<button type="submit" class="btn btn-danger" onclick="confirmDeletion()">Yes, Delete Account</button>
+		</form>
         <a href="/patients/list" class="btn btn-primary">No, Go Back</a>
     </div>
     <script>

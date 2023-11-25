@@ -15,4 +15,12 @@ public class DoctorService_ths_01 {
 	}
 	
 
+	public void deleteDoctorByEmail(String email) {
+	    Doctor_ths_01 doctor = doctorRepository.findByEmail(email);
+	    if (doctor != null) {
+	    	doctorRepository.delete(doctor);
+	    }
+}
+	
+	
 }
