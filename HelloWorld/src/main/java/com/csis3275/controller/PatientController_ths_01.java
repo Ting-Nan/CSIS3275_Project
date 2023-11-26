@@ -1,9 +1,11 @@
 package com.csis3275.controller;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -75,7 +77,7 @@ public class PatientController_ths_01 {
     }
     
     
-    
+    //search function
     @RequestMapping("/patients/list/search")
     public String patientList(Model model, @RequestParam(name = "keyword", required = false) String keyword) {
         List<Patient_ths_01> patientList;
@@ -89,6 +91,35 @@ public class PatientController_ths_01 {
         model.addAttribute("patientList", patientList);
         model.addAttribute("keyword", keyword);
 
+        return "patients/list";
+    }
+    
+    
+    //sorting function
+    @GetMapping("/patients/list/sort")
+    public String sortPatients(Model model, @RequestParam(name = "sortBy", required = false) String sortBy) {
+        List<Patient_ths_01> patientList;
+
+        if ("firstName".equals(sortBy)) {
+            patientList = patientService.findAllByOrderByFirstName();
+        } else if ("lastName".equals(sortBy)) {
+            patientList = patientService.findAllByOrderByLastName();
+        } else {
+            
+            patientList = patientService.findAll();
+        }
+
+        model.addAttribute("patientList", patientList);
+        model.addAttribute("sortBy", sortBy);
+
+        return "patients/list";
+    }
+    
+    @GetMapping("/patients/list/default")
+    public String defaultSortPatients(Model model) {
+        List<Patient_ths_01> patientList = patientService.findAll();
+        model.addAttribute("patientList", patientList);
+        model.addAttribute("sortBy", "default"); 
         return "patients/list";
     }
     

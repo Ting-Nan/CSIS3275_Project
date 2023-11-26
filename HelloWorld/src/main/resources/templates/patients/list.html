@@ -77,6 +77,23 @@ tr:nth-child(even) {
 .hidden-row {
     display: none;
 }
+
+.sort-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.sort-button:hover {
+    background-color: #45a049;
+}
   
   </style>
   <body>
@@ -87,7 +104,33 @@ tr:nth-child(even) {
     Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
     <input type="submit" value="Search" />
     <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
-</form>
+    <br/>
+	</form>
+      
+     
+     <div class="sort-btn-group">
+    	<div style="display: flex; gap: 10px;">
+
+    <!-- Sort by First Name button -->
+    <form action="/patients/list/sort" method="get">
+        <input type="hidden" name="sortBy" value="firstName" />
+        <button type="submit" class="sort-button">Sort by First Name</button>
+    </form>
+
+    <!-- Sort by Last Name button -->
+    <form action="/patients/list/sort" method="get">
+        <input type="hidden" name="sortBy" value="lastName" />
+        <button type="submit" class="sort-button">Sort by Last Name</button>
+    </form>
+
+    <!-- Default Sort button -->
+    <form action="/patients/list/default" method="get">
+        <button type="submit" class="sort-button">Default Sort</button>
+    </form>
+
+
+	</div> 
+      
       
       <table class="table table-striped">
         <thead>
@@ -122,6 +165,11 @@ tr:nth-child(even) {
     <script type="text/javascript">
     function clearSearch() {
         window.location.href = "[[@{/patients/list}]]";
+    }
+    
+    
+    function sortByField(fieldName) {
+        window.location.href = "/list?sortField=" + fieldName;
     }
 	</script>
    

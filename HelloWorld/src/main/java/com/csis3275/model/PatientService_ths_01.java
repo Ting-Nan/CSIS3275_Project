@@ -3,9 +3,16 @@
 package com.csis3275.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,17 +47,12 @@ public class PatientService_ths_01 {
 		patientRepository.deleteById(idToDelete);
 	}
 	
-	
-	
-	
 	public PatientService_ths_01(PatientRepository_ths_01 patientRepository) {
         this.patientRepository = patientRepository;
     }
 
 	
-	
-	
-    
+	//searching function
 	public List<Patient_ths_01> searchPatients(String keyword) {
         return patientRepository.search(keyword);
     }
@@ -58,5 +60,15 @@ public class PatientService_ths_01 {
 	public List<Patient_ths_01> findAll() {
 	    return patientRepository.findAll();
 	}
+	
+	//sorting function
+	public List<Patient_ths_01> findAllByOrderByFirstName() {
+        return patientRepository.findAllByOrderByFirstNameAsc();
+    }
+
+    public List<Patient_ths_01> findAllByOrderByLastName() {
+        return patientRepository.findAllByOrderByLastNameAsc();
+    }
+	
 }
 
