@@ -2,13 +2,14 @@
 
 package com.csis3275.model;
 
+import com.csis3275.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -21,6 +22,8 @@ public class PatientService_ths_01 {
 	
 	@Autowired
 	private PatientRepository_ths_01 patientRepository;
+	
+	
 	
 	public Patient_ths_01 createPatient(Patient_ths_01 newPatient) {
 		return patientRepository.save(newPatient);
@@ -69,6 +72,15 @@ public class PatientService_ths_01 {
     public List<Patient_ths_01> findAllByOrderByLastName() {
         return patientRepository.findAllByOrderByLastNameAsc();
     }
-	
+    
+    
+    //pagination
+ 
+    
+    public Page<Patient_ths_01> listAll(int pageNumber) {
+        Pageable pageable = PageRequest.of(pageNumber - 1, 5);
+        return patientRepository.findAll(pageable);
+    }
+
 }
 

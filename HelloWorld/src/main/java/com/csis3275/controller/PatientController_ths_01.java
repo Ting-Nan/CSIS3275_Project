@@ -4,26 +4,46 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.csis3275.model.PatientRepository_ths_01;
 import com.csis3275.model.PatientService_ths_01;
 import com.csis3275.model.Patient_ths_01;
 import com.csis3275.model.SymptomService_ths_01;
 
-
+//@RestController
 @Controller
 public class PatientController_ths_01 {
 
     private final PatientService_ths_01 patientService;
     private final SymptomService_ths_01 symptomService;
+    
+    @Autowired
+    private PatientRepository_ths_01 patientRepository;
+
+    
 
     @Autowired
     public PatientController_ths_01(PatientService_ths_01 patientService, SymptomService_ths_01 symptomService) {
@@ -123,6 +143,33 @@ public class PatientController_ths_01 {
         return "patients/list";
     }
     
+    
+    //pagination
+    @RequestMapping("/")
+    public String viewlist(Model model) {
+    	return listByPage(model, 1);
+    }
+     
+    
+    @GetMapping("/page/{pageNumber}")
+    public String listByPage(Model model, @PathVariable("pageNumber") int currentPage) {
+        Page<Patient_ths_01> patientPage = patientService.listAll(currentPage);
+        long totalItems = patientPage.getTotalElements();
+        List<Patient_ths_01> patients = patientPage.getContent();
+        int totalPages = patientPage.getTotalPages();
+
+        model.addAttribute("patientList", patients);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalItems", totalItems);
+        model.addAttribute("totalPages", totalPages);
+        
+        return "patients/list";
+    }
+
+
+
+    
+ 
 
 }
 
