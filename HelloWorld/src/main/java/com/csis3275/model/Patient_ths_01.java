@@ -46,6 +46,23 @@ public class Patient_ths_01 {
 		this.keyword = keyword;
 	}
 
+	
+
+
+
+	public Patient_ths_01(Long id, String firstName, String lastName, String email, double height, double weight,
+			List<String> symptoms) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.height = height;
+		this.weight = weight;
+		this.symptoms = symptoms;
+	}
+
+
 
 
 
