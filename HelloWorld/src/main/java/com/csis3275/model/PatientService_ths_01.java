@@ -82,5 +82,9 @@ public class PatientService_ths_01 {
         return patientRepository.findAll(pageable);
     }
 
+    //Controller test
+    public List<Patient_ths_01> getAllPatients() {
+        return patientRepository.findAll();
+    }
 }
 

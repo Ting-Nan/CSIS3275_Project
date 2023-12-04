@@ -43,7 +43,7 @@ public class PatientController_ths_01 {
     @Autowired
     private PatientRepository_ths_01 patientRepository;
 
-    
+ 
 
     @Autowired
     public PatientController_ths_01(PatientService_ths_01 patientService, SymptomService_ths_01 symptomService) {

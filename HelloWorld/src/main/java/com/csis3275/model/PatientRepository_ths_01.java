@@ -35,7 +35,9 @@ public interface PatientRepository_ths_01 extends CrudRepository<Patient_ths_01,
 	Page<Patient_ths_01> findAll(Pageable pageable);
 
 	//Page<Patient_ths_01> findByFirstNameContaining(String keyword, Pageable pageable);
-	
+	List<Patient_ths_01> findByLastNameContaining(String lastName);
+    
+    List<Patient_ths_01> findByEmailContaining(String email);
 	 
 	  
 	    
