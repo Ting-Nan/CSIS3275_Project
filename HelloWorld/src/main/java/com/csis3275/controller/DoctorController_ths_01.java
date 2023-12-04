@@ -96,16 +96,11 @@ public class DoctorController_ths_01 {
 	    }
 
 	    @PostMapping("/doctor/deleteAccount")
-	    public String deleteAccountConfirmation(Model model) {
-	        
-	        String email = getCurrentLoggedInDoctorEmail();
-
-	        
+	    public String deleteAccountConfirmation(@RequestParam String email, Model model, HttpSession httpSession) {
+	       
 	        doctorService_ths_01.deleteDoctorByEmail(email);
 
-	        
 	        httpSession.removeAttribute("loggedInDoctorEmail");
-
 	        
 	        return "redirect:/doctor/login";
 	    }

@@ -52,9 +52,9 @@
         <h2>Confirm Deletion</h2>
         <p>Are you sure you want to delete your account?</p>
         <form method="post" th:action="@{/doctor/deleteAccount}">
-            <input type="hidden" name="email" th:value="${email}" />
-            <button type="submit" class="btn btn-danger">Yes, Delete Account</button>
-        </form>
+    		<input type="hidden" name="email" th:value="${email}" />
+    		<button type="submit" class="btn btn-danger">Yes, Delete Account</button>
+		</form>
         <a href="/patients/list" class="btn btn-primary">No, Go Back</a>
     </div>
     <script>

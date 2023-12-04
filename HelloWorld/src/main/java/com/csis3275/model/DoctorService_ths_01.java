@@ -25,6 +25,8 @@ public class DoctorService_ths_01 {
 	        System.out.println("Found doctor to delete: " + doctor.getEmail());
 	        doctorRepository.delete(doctor);
 	        System.out.println("Doctor deleted successfully!");
+	    } else {
+	        System.out.println("Doctor not found with email: " + email);
 	    }
 	}
 
