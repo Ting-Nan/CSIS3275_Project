@@ -3,6 +3,8 @@ package com.csis3275.controller;
 
 import com.csis3275.model.Doctor_ths_01;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,30 +65,50 @@ public class DoctorController_ths_01 {
 		}
 	}
 	
-	@GetMapping("/doctor/deleteAccount")
-	public String showDeleteAccountPage(Model model) {
-	    // 获取当前登录医生的邮箱地址
-	    String email = getCurrentLoggedInDoctorEmail();
+	
+	
+	 @Autowired
+	    private HttpSession httpSession;
 
-	    // 将邮箱地址添加到模型中
-	    model.addAttribute("email", email);
+	    @GetMapping("/doctor/deleteAccount")
+	    public String showDeleteAccountPage(Model model) {
+	        
+	        String email = getCurrentLoggedInDoctorEmail();
 
-	    return "doctor/deleteAccount";
-	}
+	        
+	        model.addAttribute("email", email);
 
-	private String getCurrentLoggedInDoctorEmail() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	        return "doctor/deleteAccount";
+	    }
 
-	@PostMapping("/doctor/deleteAccount")
-	public String deleteAccountConfirmation(@RequestParam String email, Model model) {
-	    // 调用服务类方法删除帐号
-	    doctorService_ths_01.deleteDoctorByEmail(email);
+	    
+	    private String getCurrentLoggedInDoctorEmail() {
+	        
+	        Object emailAttribute = httpSession.getAttribute("loggedInDoctorEmail");
 
-	    // 删除成功后重定向到登录页面或其他页面
-	    return "redirect:/doctor/login";
-	}
+	        
+	        if (emailAttribute != null) {
+	            return emailAttribute.toString();
+	        }
+
+	        
+	        return "example@example.com";
+	    }
+
+	    @PostMapping("/doctor/deleteAccount")
+	    public String deleteAccountConfirmation(Model model) {
+	        
+	        String email = getCurrentLoggedInDoctorEmail();
+
+	        
+	        doctorService_ths_01.deleteDoctorByEmail(email);
+
+	        
+	        httpSession.removeAttribute("loggedInDoctorEmail");
+
+	        
+	        return "redirect:/doctor/login";
+	    }
 	
 
 	
