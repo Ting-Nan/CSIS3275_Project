@@ -112,8 +112,8 @@ public class PatientController_ths_01 {
          
             return "redirect:/patients/list";
         } catch (Exception e) {
-            e.printStackTrace(); // or log the error
-            return "redirect:/patients/list"; // or specify an error page
+            e.printStackTrace(); 
+            return "redirect:/patients/list"; 
         }
     }
     
