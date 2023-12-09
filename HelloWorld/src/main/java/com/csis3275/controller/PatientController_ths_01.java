@@ -117,6 +117,11 @@ public class PatientController_ths_01 {
         }
     }
     
+    @GetMapping("/patients/setup-appointment")
+    public String setupAppointment(Model model) {
+        return "patients/setupAppointment";
+    }
+    
     
     //search function
     @RequestMapping("/patients/list/search")
