@@ -74,46 +74,72 @@
         input[type="submit"]:hover {
             background-color: #45a049;
         }
-        
-        .prescription {
-			display: grid;
-			grid-template-rows: 30px 1fr;
-		}
-        
-    </style>
-    <script>
 
-    </script>
+        .prescription {
+            display: grid;
+            grid-template-rows: 30px 1fr;
+        }
+
+    </style>
 </head>
 <body>
-	<div class="prescription">
-		<div class="header">
-			<h2>Prescribe for Patient:</h2>
-		</div>		
-    
-	    <div class="patientInfo">
-			<p>Patient Information:</p>
-			    <ul>
-			        <li>ID: <span th:text="${prescribePatient.id}"></span></li>
-			        <li>First Name: <span th:text="${prescribePatient.firstName}"></span></li>
-			        <li>Last Name: <span th:text="${prescribePatient.lastName}"></span></li>
-			        <li>Symptoms: <span th:text="${prescribePatient.symptoms}"></span></li>
-			        <!-- Add more patient properties as needed -->
-			    </ul>		
-		</div>
-		
-		<div class="prescription-form">
-			<form action="#" th:action="@{/patients/prescribe}" th:object="${prescribePatient}" method="post">
-			        <label for="prescription">Prescription:</label>
-			        <input type="text" th:field="*{prescribe}" />
-			        <br/>
-			        <input type="submit" value="Submit"/> 
-			 </form>
-		</div>
-	</div>
-    
+<div class="prescription">
+    <div class="header">
+        <h2>Prescribe for Patient:</h2>
+    </div>
 
-    
-    
+    <div class="patientInfo">
+        <p>Patient Information:</p>
+        <ul>
+            <li>ID: <span id="patientId" th:text="${prescribePatient.id}"></span></li>
+            <li>First Name: <span id="patientFirstName" th:text="${prescribePatient.firstName}"></span></li>
+            <li>Last Name: <span id="patientLastName" th:text="${prescribePatient.lastName}"></span></li>
+            <li>Symptoms: <span id="patientSymptoms" th:text="${prescribePatient.symptoms}"></span></li>
+        </ul>
+    </div>
+
+    <div class="prescription-form">
+        <form action="#" th:action="@{/patients/prescribe}" th:object="${prescribePatient}" method="post"
+              onsubmit="updatePatientInfo()">
+
+            <label for="prescription">Prescription:</label>
+            <input type="text" id="prescribe" th:field="*{prescribe}" />
+            <input type="text" id="prescribePatientId" th:field="*{id}" style="display: none" />
+            <input type="text" id="prescribePatientFirstName" th:field="*{firstName}" style="display: none" />
+            <input type="text" id="prescribePatientLastName" th:field="*{lastName}" style="display: none" />
+            <input type="text" id="prescribePatientSymptoms" th:field="*{symptoms}" style="display: none" />
+            <br/>
+            <input type="submit" value="Submit"/>
+        </form>
+    </div>
+
+   
+
+</div>
+
+<script th:inline="javascript">
+    function updatePatientInfo() {
+        var prescribeForm = document.forms[0]; 
+        var prescribePatientId = prescribeForm.elements["id"].value;
+        var prescribePatientFirstName = prescribeForm.elements["firstName"].value;
+        var prescribePatientLastName = prescribeForm.elements["lastName"].value;
+        var prescribePatientSymptoms = prescribeForm.elements["symptoms"].value;
+
+        document.getElementById('patientId').innerText = prescribePatientId;
+        document.getElementById('patientFirstName').innerText = prescribePatientFirstName;
+        document.getElementById('patientLastName').innerText = prescribePatientLastName;
+        document.getElementById('patientSymptoms').innerText = prescribePatientSymptoms;
+
+       
+        var prescriptionInfo = document.getElementById('prescriptionInfo');
+        prescriptionInfo.innerHTML = '<ul>' +
+            '<li>ID: <span>' + prescribePatientId + '</span></li>' +
+            '<li>First Name: <span>' + prescribePatientFirstName + '</span></li>' +
+            '<li>Last Name: <span>' + prescribePatientLastName + '</span></li>' +
+            '<li>Symptoms: <span>' + prescribePatientSymptoms + '</span></li>' +
+            '</ul>';
+    }
+</script>
+
 </body>
 </html>
