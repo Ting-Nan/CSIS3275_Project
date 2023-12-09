@@ -151,6 +151,7 @@ tr:nth-child(even) {
             <th>Symptoms</th>
             <th>Edit</th>
             <th>Delete</th>
+            <th>Prescribe</th>
           </tr>
         </thead>
         <tr th:each="patient: ${patientList}">
@@ -163,6 +164,7 @@ tr:nth-child(even) {
           <td th:text="${patient.symptoms}"></td>
           <td><a th:href="@{'/patients/edit?id=' + ${patient.id}}" class="btn btn-warning">Edit</a></td>
 		<td><a th:href="@{'/patients/delete?id=' + ${patient.id}}" class="btn btn-danger">Delete</a></td>
+		<td><a th:href="@{'/patients/prescribe?id=' + ${patient.id}}" class="btn btn-warning">Prescribe</a></td>
         </tr>
       </table>
      <a class="btn btn-primary" th:href="@{/patients/add}" href="add">Add New Patient</a>
