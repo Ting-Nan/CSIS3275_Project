@@ -96,6 +96,27 @@ public class PatientController_ths_01 {
         return "redirect:/patients/list";
     }
     
+    @GetMapping("/patients/prescribe")
+    public String prescribePatient(@RequestParam("id") Long id, Model model) {
+        Patient_ths_01 originalPatient = patientService.getPatient(id);
+        model.addAttribute("prescribePatient", originalPatient);    
+
+        
+        return "patients/prescribePatient";
+    }
+    
+    @PostMapping("/patients/prescribe")
+    public String prescribePatient(@ModelAttribute("prescribePatient") Patient_ths_01 prescribePatient) {
+        try {
+            patientService.updatePatient(prescribePatient);
+         
+            return "redirect:/patients/list";
+        } catch (Exception e) {
+            e.printStackTrace(); // or log the error
+            return "redirect:/patients/list"; // or specify an error page
+        }
+    }
+    
     
     //search function
     @RequestMapping("/patients/list/search")
