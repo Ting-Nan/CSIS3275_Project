@@ -46,6 +46,7 @@ public class PatientService_ths_01 {
 		}
 	}
 	
+	
 	public void deletePatient(Long idToDelete) {
 		patientRepository.deleteById(idToDelete);
 	}

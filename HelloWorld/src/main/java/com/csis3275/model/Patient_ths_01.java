@@ -30,10 +30,12 @@ public class Patient_ths_01 {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dob;
 	private List<String> symptoms;
+	private String prescribe;
+
 	private String keyword;
 	
 	public Patient_ths_01(Long id, String firstName, String lastName, String email, double height, double weight,
-			LocalDate dob, List<String> symptoms, String keyword) {
+			LocalDate dob, List<String> symptoms, String prescribe, String keyword) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -43,6 +45,7 @@ public class Patient_ths_01 {
 		this.weight = weight;
 		this.dob = dob;
 		this.symptoms = symptoms;
+		this.prescribe = prescribe;
 		this.keyword = keyword;
 	}
 
@@ -51,7 +54,7 @@ public class Patient_ths_01 {
 
 
 	public Patient_ths_01(Long id, String firstName, String lastName, String email, double height, double weight,
-			List<String> symptoms) {
+			List<String> symptoms, String prescribe) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -60,6 +63,7 @@ public class Patient_ths_01 {
 		this.height = height;
 		this.weight = weight;
 		this.symptoms = symptoms;
+		this.prescribe = prescribe;
 	}
 
 
@@ -131,6 +135,12 @@ public class Patient_ths_01 {
 	}
 	public void setDob(LocalDate dob) {
 		this.dob = dob;
+	}
+	public String getPrescribe() {
+		return prescribe;
+	}
+	public void setPrescribe(String prescribe) {
+		this.prescribe = prescribe;
 	}
 	
 	
