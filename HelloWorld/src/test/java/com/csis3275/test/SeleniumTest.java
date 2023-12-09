@@ -61,27 +61,7 @@ private static FirefoxDriver driver;
 	      WebElement dropdown = driver.findElement(By.id("symptoms"));
 	      dropdown.findElement(By.xpath("//option[. = 'Fever']")).click();
 	    }
-	    driver.findElement(By.cssSelector("input:nth-child(15)")).click();
-	    driver.findElement(By.cssSelector("tr:nth-child(2) .btn-warning")).click();
-	    driver.findElement(By.id("height")).click();
-	    driver.findElement(By.id("height")).sendKeys("180");
-	    driver.findElement(By.id("weight")).click();
-	    driver.findElement(By.id("weight")).sendKeys("80");
-	    {
-	      WebElement dropdown = driver.findElement(By.id("symptoms"));
-	      dropdown.findElement(By.xpath("//option[. = 'Headache']")).click();
-	    }
-	    {
-	      WebElement dropdown = driver.findElement(By.id("symptoms"));
-	      dropdown.findElement(By.xpath("//option[. = 'Cough']")).click();
-	    }
-	    {
-	      WebElement dropdown = driver.findElement(By.id("symptoms"));
-	      dropdown.findElement(By.xpath("//option[. = 'Fever']")).click();
-	    }
-	    driver.findElement(By.cssSelector("input:nth-child(18)")).click();
-	    driver.findElement(By.cssSelector("tr:nth-child(2) .btn-danger")).click();
-	  }
+	 }
 
 	
 
